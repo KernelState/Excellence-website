@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence - Digital & Print Services</title>
+    <!-- Poppins Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to Three.js library for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">Excellence</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#design-services">Design</a></li>
+                <li><a href="#printing-services">Printing</a></li>
+                <li><a href="#contact-us">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header id="home">
+        <h1>
+            <span class="company-name">Excellence for </span>
+            <div class="word-rotator">
+                <span class="current">Digital</span>
+                <span id="current">Print</span>
+                <span id="525px">Social Media</span>
+                <span id="current">Design</span>
+                <span id="375px">Branding</span>
+            </div>
+            <span class="services-text">&amp; Services</span>
+        </h1>
+    </header>
+
+    <main>
+        <!-- Design Services Section -->
+        <section id="design-services">
+            <div class="image-scroller-container">
+                <!-- Canvas for 3D scrolling images -->
+                <canvas id="designCanvas" class="three-d-canvas"
+                    data-images='[
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+1",
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+2",
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+3",
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+4",
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+5",
+                        "https://placehold.co/400x250/525252/F0F0F0?text=Design+6"
+                    ]'
+                ></canvas>
+            </div>
+            <div class="scroller-overlay">
+                <div class="section-content">
+                    <h2 class="section-title">Our Design Skills</h2>
+                    <p class="section-description">
+                        At Excellence, we craft compelling visual narratives that captivate audiences and elevate brands.
+                        From sleek social media graphics to intricate web layouts and comprehensive brand identities,
+                        our designs are not just aesthetically pleasing but strategically effective. We combine creativity
+                        with user-centric principles to ensure every pixel serves a purpose, delivering prototypes that
+                        are both innovative and functional, ready for development.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Printing Services Section -->
+        <section id="printing-services">
+            <div class="image-scroller-container">
+                <!-- Canvas for 3D scrolling images -->
+                <canvas id="printingCanvas" class="three-d-canvas"
+                    data-images='[
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+1",
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+2",
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+3",
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+4",
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+5",
+                        "https://placehold.co/400x250/3A3A3A/F0F0F0?text=Book+6"
+                    ]'
+                ></canvas>
+            </div>
+            <div class="scroller-overlay">
+                <div class="section-content">
+                    <h2 class="section-title">Our Printing Services</h2>
+                    <p class="section-description">
+                        Experience unparalleled print quality with Excellence. We specialize in bringing your digital designs
+                        to life with crisp detail, vibrant colors, and durable materials. From business cards and brochures
+                        to large-format banners and bespoke book printing, our state-of-the-art technology ensures every
+                        product meets the highest standards. We are committed to precision, efficiency, and delivering
+                        tangible results that leave a lasting impression.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact-us">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@excellence.com">info@excellence.com</a></p>
+                <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                <p>Address: 123 Digital Way, Print City, TX 78901</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <p><a href="#design-services">Design Services</a></p>
+                <p><a href="#printing-services">Printing Services</a></p>
+                <p><a href="#">Social Media Ads</a></p>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Twitter</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Excellence. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>

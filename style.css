@@ -1,0 +1,427 @@
+/* CSS Variables for Theme */
+:root {
+    --dark-bg: #1a1a1a;
+    --dark-text: #f0f0f0;
+    --light-green-accent: #9BCF53; /* A vibrant light green */
+    --dark-gray: #2c2c2c;
+    --medium-gray: #444444;
+    --text-overlay-bg: rgba(26, 26, 26, 0.8); /* Slightly less transparent for better text readability */
+    --gradient-start: #23331d;
+    --gradient-end: #000000; /* Darker end for the gradient */
+}
+
+/* General Body & HTML Styling for Dark Theme */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Changed to Poppins */
+    color: var(--dark-text);
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end)); /* Gradient over entire body */
+    background-attachment: fixed; /* Keep gradient fixed during scroll */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    padding: 15px 20px;
+    position: fixed; /* Fixed at the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it's on top */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Fancy blur effect */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: var(--light-green-accent);
+    font-size: 1.8em;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--dark-text);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--light-green-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--light-green-accent);
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default for desktop */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-text);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Header / Hero Section */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 50px; /* Increased top padding for navbar clearance */
+    min-height: 80vh; /* Make hero section taller and more prominent */
+    text-align: center;
+    /* Remove background gradient from here as it's on body now */
+}
+
+header h1 {
+    font-size: clamp(2.8em, 7vw, 5em); /* Larger and more responsive */
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+}
+
+.company-name {
+    color: var(--dark-text);
+}
+
+.services-text {
+    color: var(--dark-text);
+    margin-left: 0.2em;
+}
+
+/* Word Rotator Styling */
+.word-rotator {
+    height: 1.2em;
+    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 325px;
+    margin: 0 0.2em;
+    min-width: 200px; /* Increased min-width for potentially longer words */
+    text-align: center;
+}
+
+.word-rotator span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: var(--light-green-accent);
+    opacity: 0;
+    transform: translateY(100%); /* Start below view */
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out; /* More fancy bounce */
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.word-rotator span.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.word-rotator span.leaving {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.word-rotator span.entering {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Sections (Design & Printing) */
+section {
+    padding: 100px 0; /* Padding for content within the section */
+    min-height: 100vh; /* Make sections at least viewport height */
+    display: flex; /* Use flexbox for vertical centering of content */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    position: relative;
+    overflow: hidden;
+    background-color: transparent; /* Rely on body gradient */
+}
+
+section:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.2); /* Subtle overlay for alternating sections */
+}
+
+.section-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px; /* Increased max-width for content */
+    margin: 0 auto;
+    padding: 30px; /* Increased padding */
+    background-color: var(--text-overlay-bg); /* Use overlay background */
+    backdrop-filter: blur(10px);
+    border-radius: 12px; /* Rounded corners for content box */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* More prominent shadow */
+    transform: translateY(0); /* Ensure no initial transform issues */
+    transition: transform 0.5s ease;
+}
+
+/* Hover effect for sections content */
+section:hover .section-content {
+    transform: translateY(-10px);
+}
+
+.section-title {
+    font-size: clamp(2.5em, 6vw, 4em); /* Larger titles */
+    color: var(--light-green-accent);
+    margin-bottom: 25px;
+    text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.6); /* Shadow from bottom-right */
+}
+
+.section-description {
+    font-size: clamp(1em, 2vw, 1.2em);
+    line-height: 1.8; /* Improved readability */
+    margin-bottom: 40px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--dark-text);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Slightly smaller shadow for description */
+}
+
+/* 3D Canvas Styles */
+.image-scroller-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.three-d-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.scroller-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--text-overlay-bg); /* Semi-transparent dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.4); /* Slightly transparent for gradient to show */
+    color: var(--dark-text);
+    padding: 60px 20px; /* More padding */
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid var(--medium-gray);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Shadow at the top */
+}
+
+.footer-content {
+    max-width: 1000px; /* Wider footer content */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px; /* Increased gap */
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px; /* Slightly wider columns */
+    text-align: left;
+}
+
+.footer-column h3 {
+    color: var(--light-green-accent);
+    margin-bottom: 20px; /* More space below heading */
+    font-size: 1.4em; /* Larger heading */
+    font-weight: 600;
+}
+
+.footer-column p, .footer-column a {
+    color: var(--dark-text);
+    text-decoration: none;
+    font-size: 1em; /* Slightly larger font */
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--light-green-accent);
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 40px; /* More space above copyright */
+    padding-top: 25px;
+    border-top: 1px solid var(--medium-gray);
+    font-size: 0.9em; /* Slightly larger copyright font */
+    color: var(--dark-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .nav-links {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 60%;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5em;
+    }
+
+    .menu-toggle {
+        display: flex;
+        z-index: 1001; /* Above nav-links when active */
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    header h1 {
+        flex-direction: column;
+    }
+
+    .word-rotator {
+        height: 1.8em; /* Adjust height if font size changes */
+        min-width: 10rem;
+        margin-top: 10px;
+        margin-left: -2;
+    }
+
+    .section-content {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 2.5em;
+    }
+
+    .section-description {
+        font-size: 0.95em;
+    }
+
+    footer {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .word-rotator {
+        min-width: 100px;
+    }
+    .section-title {
+        font-size: 2em;
+    }
+    .section-description {
+        font-size: 0.85em;
+    }
+    footer {
+        padding: 40px 15px;
+    }
+}
