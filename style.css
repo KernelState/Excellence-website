@@ -2,32 +2,41 @@
 :root {
     --dark-bg: #1a1a1a;
     --dark-text: #f0f0f0;
-    --light-green-accent: #9BCF53; /* A vibrant light green */
+    --light-green-accent: #DA9A38; /* A vibrant light green */
     --dark-gray: #2c2c2c;
     --medium-gray: #444444;
     --text-overlay-bg: rgba(26, 26, 26, 0.8); /* Slightly less transparent for better text readability */
-    --gradient-start: #23331d;
+    --gradient-start: #273647;
     --gradient-end: #000000; /* Darker end for the gradient */
 }
 
 /* General Body & HTML Styling for Dark Theme */
-html, body {
+html {
     height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif; /* Changed to Poppins */
-    color: var(--dark-text);
     scroll-behavior: smooth;
     overflow-x: hidden; /* Prevent horizontal scroll from animations */
-    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end)); /* Gradient over entire body */
-    background-attachment: fixed; /* Keep gradient fixed during scroll */
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Cairo', sans-serif; /* Poppins for English, Cairo for Arabic */
+    color: var(--dark-text);
     display: flex;
     flex-direction: column; /* Stack sections vertically */
     min-height: 100vh;
+    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end)); /* Gradient over entire body */
+    background-attachment: fixed; /* Keep gradient fixed during scroll */
+
+    /* --- Fade-in on load styles (from previous instruction) --- */
+    transition: opacity 1.5s ease-in-out; /* Fade in over 1.5 seconds */
 }
+
+/* Class to apply on load to trigger fade-in */
+body.fade-in-active {
+    opacity: 1; /* Fully visible */
+}
+
 
 /* Navbar Styling */
 .navbar {
@@ -56,6 +65,7 @@ body {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif; /* Keep Poppins specifically for the logo */
 }
 
 .nav-links {
@@ -66,7 +76,9 @@ body {
 }
 
 .nav-links li {
-    margin-left: 30px;
+    /* For RTL, use margin-right instead of margin-left */
+    margin-right: 30px; /* Adjusted for RTL */
+    margin-left: 0;
 }
 
 .nav-links a {
@@ -85,7 +97,9 @@ body {
     width: 0;
     height: 2px;
     bottom: -5px;
-    left: 0;
+    /* For RTL, the underline should expand from right to left */
+    right: 0; /* Adjusted for RTL */
+    left: auto;
     background-color: var(--light-green-accent);
     transition: width 0.3s ease;
 }
@@ -120,14 +134,13 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 100px 20px 50px; /* Increased top padding for navbar clearance */
-    min-height: 80vh; /* Make hero section taller and more prominent */
+    padding: 100px 20px 50px;
+    min-height: 80vh;
     text-align: center;
-    /* Remove background gradient from here as it's on body now */
 }
 
 header h1 {
-    font-size: clamp(2.8em, 7vw, 5em); /* Larger and more responsive */
+    font-size: clamp(2.8em, 7vw, 5em);
     margin-bottom: 20px;
     font-weight: 700;
     display: flex;
@@ -135,16 +148,22 @@ header h1 {
     justify-content: center;
     flex-wrap: nowrap;
     line-height: 1.2;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    direction: rtl; /* Ensure the H1 content is RTL */
 }
 
 .company-name {
     color: var(--dark-text);
+    margin-left: 0.2em; /* Spacing after for RTL */
+    margin-right: 0;
+    white-space: nowrap;
 }
 
 .services-text {
     color: var(--dark-text);
-    margin-left: 0.2em;
+    margin-right: 0.2em; /* Spacing before for RTL */
+    margin-left: 0;
+    white-space: nowrap;
 }
 
 /* Word Rotator Styling */
@@ -154,10 +173,12 @@ header h1 {
     position: relative;
     display: inline-flex;
     align-items: center;
-    width: 325px;
     margin: 0 0.2em;
-    min-width: 200px; /* Increased min-width for potentially longer words */
+    width: 325px; /* Base width */
+    min-width: 200px;
     text-align: center;
+    direction: ltr; /* Keep word rotator LTR for consistent animation */
+    font-family: 'Cairo', sans-serif; /* Ensure Arabic font for words */
 }
 
 .word-rotator span {
@@ -167,8 +188,8 @@ header h1 {
     width: 100%;
     color: var(--light-green-accent);
     opacity: 0;
-    transform: translateY(100%); /* Start below view */
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out; /* More fancy bounce */
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
     white-space: nowrap;
     font-weight: 600;
 }
@@ -190,33 +211,35 @@ header h1 {
 
 /* Sections (Design & Printing) */
 section {
-    padding: 100px 0; /* Padding for content within the section */
-    min-height: 100vh; /* Make sections at least viewport height */
-    display: flex; /* Use flexbox for vertical centering of content */
+    padding: 100px 0;
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
+    justify-content: center;
+    align-items: center;
     position: relative;
     overflow: hidden;
-    background-color: transparent; /* Rely on body gradient */
+    background-color: transparent;
+    direction: rtl; /* Set section direction to RTL */
 }
 
 section:nth-of-type(even) {
-    background-color: rgba(0, 0, 0, 0.2); /* Subtle overlay for alternating sections */
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .section-content {
     position: relative;
     z-index: 2;
-    max-width: 900px; /* Increased max-width for content */
+    max-width: 900px;
     margin: 0 auto;
-    padding: 30px; /* Increased padding */
-    background-color: var(--text-overlay-bg); /* Use overlay background */
+    padding: 30px;
+    background-color: var(--text-overlay-bg);
     backdrop-filter: blur(10px);
-    border-radius: 12px; /* Rounded corners for content box */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* More prominent shadow */
-    transform: translateY(0); /* Ensure no initial transform issues */
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    transform: translateY(0);
     transition: transform 0.5s ease;
+    text-align: right; /* Align text to the right for Arabic */
 }
 
 /* Hover effect for sections content */
@@ -225,24 +248,24 @@ section:hover .section-content {
 }
 
 .section-title {
-    font-size: clamp(2.5em, 6vw, 4em); /* Larger titles */
+    font-size: clamp(2.5em, 6vw, 4em);
     color: var(--light-green-accent);
     margin-bottom: 25px;
-    text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.6); /* Shadow from bottom-right */
+    text-shadow: -5px 5px 8px rgba(0, 0, 0, 0.6); /* Shadow for RTL */
 }
 
 .section-description {
     font-size: clamp(1em, 2vw, 1.2em);
-    line-height: 1.8; /* Improved readability */
+    line-height: 1.8;
     margin-bottom: 40px;
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
     color: var(--dark-text);
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Slightly smaller shadow for description */
+    text-shadow: -3px 3px 5px rgba(0, 0, 0, 0.5); /* Shadow for RTL */
 }
 
-/* 3D Canvas Styles */
+/* 3D Canvas Styles (These are primarily handled by JS sizing) */
 .image-scroller-container {
     position: absolute;
     top: 0;
@@ -265,7 +288,7 @@ section:hover .section-content {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--text-overlay-bg); /* Semi-transparent dark overlay */
+    background-color: var(--text-overlay-bg);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -280,41 +303,42 @@ section:hover .section-content {
 
 /* Footer */
 footer {
-    background-color: rgba(0, 0, 0, 0.4); /* Slightly transparent for gradient to show */
+    background-color: rgba(0, 0, 0, 0.4);
     color: var(--dark-text);
-    padding: 60px 20px; /* More padding */
+    padding: 60px 20px;
     text-align: center;
     margin-top: auto;
     border-top: 1px solid var(--medium-gray);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Shadow at the top */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    direction: rtl; /* Set footer direction to RTL */
 }
 
 .footer-content {
-    max-width: 1000px; /* Wider footer content */
+    max-width: 1000px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 30px; /* Increased gap */
+    gap: 30px;
 }
 
 .footer-column {
     flex: 1;
-    min-width: 220px; /* Slightly wider columns */
-    text-align: left;
+    min-width: 220px;
+    text-align: right; /* Align column content to the right for Arabic */
 }
 
 .footer-column h3 {
     color: var(--light-green-accent);
-    margin-bottom: 20px; /* More space below heading */
-    font-size: 1.4em; /* Larger heading */
+    margin-bottom: 20px;
+    font-size: 1.4em;
     font-weight: 600;
 }
 
 .footer-column p, .footer-column a {
     color: var(--dark-text);
     text-decoration: none;
-    font-size: 1em; /* Slightly larger font */
+    font-size: 1em;
     line-height: 1.6;
     margin-bottom: 10px;
     display: block;
@@ -327,28 +351,34 @@ footer {
 }
 
 .copyright {
-    margin-top: 40px; /* More space above copyright */
+    margin-top: 40px;
     padding-top: 25px;
     border-top: 1px solid var(--medium-gray);
-    font-size: 0.9em; /* Slightly larger copyright font */
+    font-size: 0.9em;
     color: var(--dark-text);
 }
 
-/* Responsive adjustments */
+/*
+--- FULL PHONE SUPPORT MEDIA QUERIES ---
+Adjustments for smaller screens (typically <= 900px, but focusing on ~768px and below for deeper mobile styles)
+*/
+
 @media (max-width: 900px) {
+    /* Navbar for tablet/smaller desktop */
     .nav-links {
         position: fixed;
-        right: 0;
+        left: 0; /* Slide in from left for RTL */
+        right: auto;
         top: 0;
         height: 100%;
-        width: 60%;
+        width: 70%; /* Wider for smaller tablets */
         background-color: rgba(0, 0, 0, 0.95);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transform: translateX(100%);
+        transform: translateX(-100%); /* Hidden off-screen left */
         transition: transform 0.3s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.7); /* Shadow on right when open */
     }
 
     .nav-links.active {
@@ -356,18 +386,19 @@ footer {
     }
 
     .nav-links li {
-        margin: 20px 0;
+        margin: 20px 0; /* Stacked links, center margin */
     }
 
     .nav-links a {
-        font-size: 1.5em;
+        font-size: 1.5em; /* Larger for touch targets */
     }
 
     .menu-toggle {
         display: flex;
-        z-index: 1001; /* Above nav-links when active */
+        z-index: 1001;
     }
 
+    /* Hamburger icon animation (direction-agnostic) */
     .menu-toggle.active .bar:nth-child(2) {
         opacity: 0;
     }
@@ -380,48 +411,114 @@ footer {
         transform: translateY(-8px) rotate(-45deg);
     }
 
+    /* Header adjustments */
     header h1 {
-        flex-direction: column;
+        flex-direction: column; /* Stack "Excellence for", rotator, "& Services" */
+        font-size: 2.5em; /* Smaller hero text */
+        line-height: 1.3;
+    }
+
+    .company-name {
+        margin-left: 0; /* Remove extra margin when stacked */
+        margin-right: 0;
+    }
+
+    .services-text {
+        margin-right: 0; /* Remove extra margin when stacked */
+        margin-left: 0;
     }
 
     .word-rotator {
         height: 1.8em; /* Adjust height if font size changes */
-        min-width: 10rem;
+        min-width: 100%; /* Allow rotator to take full available width if needed */
         margin-top: 10px;
-        margin-left: -2;
+        margin-left: auto; /* Center it */
+        margin-right: auto; /* Center it */
+        width: auto; /* Let content dictate width more */
+    }
+
+    /* Section content adjustments */
+    section {
+        padding: 80px 0; /* Reduced padding for more vertical content space */
+        min-height: 70vh; /* Allow sections to be shorter on mobile */
     }
 
     .section-content {
         padding: 20px;
+        max-width: 90%; /* Allow content to take up more width */
+        margin: 0 15px; /* Add horizontal margin */
     }
 
     .section-title {
-        font-size: 2.5em;
+        font-size: 2em; /* Smaller title font */
+        margin-bottom: 15px;
     }
 
     .section-description {
-        font-size: 0.95em;
+        font-size: 0.9em; /* Smaller body font */
+        line-height: 1.6;
+        margin-bottom: 20px;
     }
 
-    footer {
-        padding: 40px 15px;
+    /* Footer adjustments */
+    .footer-content {
+        flex-direction: column; /* Stack footer columns */
+        align-items: center; /* Center stacked columns */
+        gap: 25px; /* Adjusted gap */
+    }
+
+    .footer-column {
+        text-align: center; /* Center footer column text */
+        min-width: unset; /* Remove min-width to allow shrinking */
+        width: 100%; /* Take full width when stacked */
+    }
+
+    .footer-column h3 {
+        margin-bottom: 10px;
     }
 }
 
-@media (max-width: 600px) {
+/* Specific adjustments for very small phones (e.g., iPhone SE) */
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 15px; /* Smaller padding */
+    }
+
+    .logo {
+        font-size: 1.5em; /* Smaller logo on very small screens */
+    }
+
+    .nav-links {
+        width: 85%; /* Mobile menu takes up more width on very small screens */
+    }
+
     header h1 {
-        font-size: 2em;
+        font-size: 2em; /* Smallest hero text */
     }
+
     .word-rotator {
-        min-width: 100px;
+        height: 1.6em; /* Adjust height for smaller font */
     }
+
     .section-title {
-        font-size: 2em;
+        font-size: 1.8em;
     }
+
     .section-description {
         font-size: 0.85em;
+        line-height: 1.5;
     }
-    footer {
-        padding: 40px 15px;
+
+    section {
+        padding: 60px 0; /* Even less padding */
+        min-height: 60vh; /* Allow even shorter sections */
+    }
+
+    .footer-content {
+        padding: 0 15px; /* Add side padding to footer content */
+    }
+
+    .copyright {
+        font-size: 0.8em;
     }
 }
